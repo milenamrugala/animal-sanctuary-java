@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -33,5 +34,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id") // foreign key referencing the role entity
     )
     private Set<Role> roles; //a set of roles assigned to the user
+
+    @OneToMany(mappedBy = "user")
+    private List<Adopt> adoptions;
 
 }
