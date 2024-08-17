@@ -1,21 +1,20 @@
-package pl.milenamrugala.animalsanctuary.model;
+package pl.milenamrugala.animalsanctuary.model; // packages are used to organize related classes and interfaces into namespaces, helping to avoid name conflicts and to group related functionalities together
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-import java.time.LocalDate;
+import jakarta.persistence.*; // part of the Jakarta Persistence API (formerly JPA, part of Java EE), this API is used for mapping Java objects to database tables
+import lombok.*; // a library that reduces boilerplate code by generating common methods like getters, setters, and constructors at compile-time
+import java.time.LocalDate; // imports the LocalDate class from the java.time package
 
 @Getter
 @Setter
-@ToString
+@ToString // a string representation of the object
+@NoArgsConstructor // a constructor that takes no parameters
+@AllArgsConstructor // a constructor that takes parameters for all fields in the class
 
-@Entity
+@Entity // marks this class as a JPA entity, meaning it maps to a database table
 public class MedicalRecord {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // the primary key of the entity
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // specifies that the ID should be generated automatically by the database, often used with auto-incremented fields in databases
     private Long id;
 
     private String description;
@@ -28,11 +27,11 @@ public class MedicalRecord {
     @Column(name = "is_in_treatment")
     private boolean isInTreatment;
 
-    @ManyToOne
+    @ManyToOne // many MedicalRecord instances can be associated with a single Animal instance
     @JoinColumn(name = "animal_id")
     private Animal animal;
 
-    @ManyToOne
+    @ManyToOne // many MedicalRecord instances can be associated with a single User instance
     @JoinColumn(name = "vet_id")
     private User vet;
 
