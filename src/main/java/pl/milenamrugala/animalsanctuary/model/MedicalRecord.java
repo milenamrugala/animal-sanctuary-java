@@ -32,6 +32,10 @@ public class MedicalRecord {
     @JoinColumn(name = "animal_id")
     private Animal animal;
 
+    @ManyToOne
+    @JoinColumn(name = "vet_id")
+    private User vet;
+
     @Column(name = "end_date")
     private LocalDate endDate;
 
