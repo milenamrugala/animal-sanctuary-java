@@ -27,12 +27,7 @@ public abstract class Animal {
     @OneToMany(mappedBy = "animal")
     private List<MedicalRecord> medicalRecords;
 
-    @ManyToMany
-    @JoinTable(
-            name = "animal_sponsor",
-            joinColumns = @JoinColumn(name = "animal_id"),
-            inverseJoinColumns = @JoinColumn(name = "sponsor_id")
-    )
+    @OneToMany(mappedBy = "animal")
     private List<Sponsorship> sponsorships;
 
     @ManyToMany
