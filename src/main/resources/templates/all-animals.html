@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Animals</title>
+    <link rel="stylesheet" type="text/css" href="/css/all-animals.css">
+</head>
+<body>
+<h1>Animal Sanctuary's Current Inhabitants</h1>
+<table>
+    <thead>
+    <tr>
+        <th class="small">Name</th>
+        <th class="small">Species</th>
+        <th class="small">Type</th>
+        <th class="large">Status</th> <!-- Larger column for Status -->
+        <th class="small">Dangerous</th>
+        <th class="small">Disabled</th>
+        <th class="small">Endangered</th>
+        <th class="small">Venomous</th>
+        <th class="small">Ready to Adopt</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="animal : ${animals}">
+        <td th:text="${animal.name}" class="small">Name</td>
+        <td th:text="${animal.species}" class="small">Species</td>
+
+        <!-- Determine Type -->
+        <td class="small">
+            <span th:if="${animal instanceof T(pl.milenamrugala.animalsanctuary.model.WildAnimal)}">Wild</span>
+            <span th:if="${animal instanceof T(pl.milenamrugala.animalsanctuary.model.DomesticatedAnimal)}">Domesticated</span>
+        </td>
+
+        <td th:text="${animal.status}" class="large">Status</td> <!-- Larger column for Status -->
+        <td th:text="${animal.isDangerous ? 'Yes' : 'No'}" class="small">Dangerous</td>
+        <td th:text="${animal.isDisabled ? 'Yes' : 'No'}" class="small">Disabled</td>
+
+        <!-- Endangered (only for WildAnimal) -->
+        <td th:if="${animal instanceof T(pl.milenamrugala.animalsanctuary.model.WildAnimal)}"
+            th:text="${animal.isEndangered ? 'Yes' : 'No'}" class="small">Endangered</td>
+        <td th:if="${animal instanceof T(pl.milenamrugala.animalsanctuary.model.DomesticatedAnimal)}"
+            th:text="'Not applicable'" class="small">Endangered</td>
+
+        <!-- Venomous (only for WildAnimal) -->
+        <td th:if="${animal instanceof T(pl.milenamrugala.animalsanctuary.model.WildAnimal)}"
+            th:text="${animal.isVenomous ? 'Yes' : 'No'}" class="small">Venomous</td>
+        <td th:if="${animal instanceof T(pl.milenamrugala.animalsanctuary.model.DomesticatedAnimal)}"
+            th:text="'Not applicable'" class="small">Venomous</td>
+
+        <!-- Ready to Adopt (only for DomesticatedAnimal) -->
+        <td th:if="${animal instanceof T(pl.milenamrugala.animalsanctuary.model.DomesticatedAnimal)}"
+            th:text="${animal.readyToAdopt ? 'Yes' : 'No'}" class="small">Ready to Adopt</td>
+        <td th:if="${animal instanceof T(pl.milenamrugala.animalsanctuary.model.WildAnimal)}"
+            th:text="'Not applicable'" class="small">Ready to Adopt</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
