@@ -1,0 +1,32 @@
+th, td {
+    line-height: 1.5;
+    padding: 8px;
+    text-align: justify;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+}
+
+td.small, th.small {
+    width: 7%;
+}
+
+td.large, th.large {
+    width: 20%;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+h1 {
+    text-align: center;
+}
